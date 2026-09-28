@@ -11,6 +11,15 @@ export function applyWebStyles() {
     html, body { background-color: ${COLORS.bg}; }
 
     /*
+      Base de todos os campos: qualquer troca de fundo/cor feita pelo navegador (autopreenchimento)
+      fica adiada indefinidamente. Precisa estar ativa antes do preenchimento para valer no WebKit
+      (Safari e Chrome do iPhone).
+    */
+    input {
+      transition: background-color 0s 600000s, color 0s 600000s, -webkit-text-fill-color 0s 600000s !important;
+    }
+
+    /*
       O autopreenchimento do navegador pinta o campo de azul claro/branco. Versões recentes
       do Chrome ignoram o truque de box-shadow, então a troca de cor é adiada indefinidamente
       com transition, e o fundo pintado pelo navegador fica recortado atrás do texto
