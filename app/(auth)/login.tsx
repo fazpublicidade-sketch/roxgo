@@ -5,6 +5,7 @@ import { supabase } from '../../lib/supabase'
 import { showAlert } from '../../lib/alert'
 import Screen from '../../components/Screen'
 import Logo from '../../components/Logo'
+import { InstallBanner } from '../../components/InstallApp'
 import { Input, PrimaryButton, SecondaryButton } from '../../components/ui'
 import { COLORS, FONTS } from '../../constants/theme'
 
@@ -86,6 +87,8 @@ export default function Login() {
         />
 
         <Text style={styles.terms}>Ao criar conta você concorda com os Termos de Uso</Text>
+
+        <InstallBanner style={styles.install} />
       </View>
     </Screen>
   )
@@ -102,6 +105,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
   },
   form: { paddingBottom: 16 },
+  install: { marginTop: 20, marginBottom: 0 },
   gap: { marginTop: 12 },
   primary: { marginTop: 24 },
   terms: {

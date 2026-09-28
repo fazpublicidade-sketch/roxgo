@@ -19,6 +19,8 @@ import {
 } from '@expo-google-fonts/manrope'
 import { COLORS } from './constants/theme'
 import { applyWebStyles } from './lib/webStyles'
+// Captura cedo o evento de instalação do PWA (dispara uma vez no carregamento)
+import './lib/pwa'
 import Login from './app/(auth)/login'
 import Onboarding from './app/(auth)/onboarding'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'

@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
-import { Flag, LogOut, Pencil } from 'lucide-react-native'
+import { Download, Flag, LogOut, Pencil } from 'lucide-react-native'
 import { supabase } from '../../lib/supabase'
 import { useAthlete } from '../../lib/athlete'
 import { useWorkouts } from '../../lib/hooks'
 import { TabParamList, useAppNavigation } from '../../lib/navigation'
 import { confirmAction } from '../../lib/alert'
 import Screen from '../../components/Screen'
+import { IosInstallModal } from '../../components/InstallApp'
+import { usePwaInstall } from '../../lib/pwa'
 import { Avatar, Card, ListRow, SectionTitle, Stat } from '../../components/ui'
 import { TYPE } from '../../constants/theme'
 import { categoryLabel, experienceLabel } from '../../constants/hyrox'
@@ -17,6 +20,8 @@ export default function Perfil() {
   const root = useAppNavigation()
   const tabs = useNavigation<BottomTabNavigationProp<TabParamList>>()
   const workouts = useWorkouts(athlete?.id)
+  const pwa = usePwaInstall()
+  const [iosHelp, setIosHelp] = useState(false)
 
   if (!athlete) return null
 
@@ -48,8 +53,26 @@ export default function Perfil() {
       <SectionTitle title="Conta" />
       <Card style={styles.list}>
         <ListRow icon={Pencil} title="Editar perfil" subtitle="Nome, categoria e nível" onPress={() => root.navigate('EditarPerfil')} />
-        <ListRow icon={Flag} title="Minhas provas" subtitle="Calendário de provas" onPress={() => tabs.navigate('Provas')} last />
+        <ListRow
+          icon={Flag}
+          title="Minhas provas"
+          subtitle="Calendário de provas"
+          onPress={() => tabs.navigate('Provas')}
+          last={!pwa.available}
+        />
+        {pwa.available && (
+          <ListRow
+            icon={Download}
+            title="Instalar app"
+            subtitle="Adicione o ROXGO à tela inicial"
+            onPress={async () => {
+              if ((await pwa.install()) === 'ios-instructions') setIosHelp(true)
+            }}
+            last
+          />
+        )}
       </Card>
+      <IosInstallModal visible={iosHelp} onClose={() => setIosHelp(false)} />
 
       <Card style={styles.list}>
         <ListRow icon={LogOut} title="Sair" onPress={signOut} last right={<View />} />

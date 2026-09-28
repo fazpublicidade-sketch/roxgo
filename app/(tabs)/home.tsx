@@ -11,6 +11,7 @@ import Screen from '../../components/Screen'
 import Logo from '../../components/Logo'
 import WeekStreak from '../../components/WeekStreak'
 import GapHero from '../../components/GapHero'
+import { InstallBanner } from '../../components/InstallApp'
 import WorkoutCard from '../../components/WorkoutCard'
 import { Avatar, Card, IconTile, SectionTitle } from '../../components/ui'
 import { COLORS, FONTS, ICON, TYPE } from '../../constants/theme'
@@ -62,6 +63,8 @@ export default function Home() {
 
   return (
     <Screen header={header} edges={['top']}>
+      <InstallBanner style={styles.install} />
+
       <WeekStreak dates={dates} />
 
       <SectionTitle title="Próxima prova" action="Ver provas" onAction={() => tabs.navigate('Provas')} />
@@ -141,6 +144,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.border,
   },
   flex: { flex: 1 },
+  install: { marginBottom: 20 },
   gap: { marginTop: 4, marginBottom: 4 },
   small: { fontSize: 13, marginTop: 2 },
   raceCard: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 18 },
