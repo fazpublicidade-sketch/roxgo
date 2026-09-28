@@ -13,7 +13,8 @@ export function applyWebStyles() {
     /*
       O autopreenchimento do navegador pinta o campo de azul claro/branco. Versões recentes
       do Chrome ignoram o truque de box-shadow, então a troca de cor é adiada indefinidamente
-      com transition e o fundo continua transparente sobre o campo do app.
+      com transition, e o fundo pintado pelo navegador fica recortado atrás do texto
+      (background-clip: text), invisível sob as letras brancas.
     */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -24,6 +25,8 @@ export function applyWebStyles() {
       -webkit-text-fill-color: ${COLORS.text} !important;
       caret-color: ${COLORS.text};
       transition: background-color 0s 600000s, color 0s 600000s !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
     }
 
     /* Seletor padrão em regra separada: navegador que não o conhece descarta só esta regra */
@@ -33,6 +36,8 @@ export function applyWebStyles() {
       -webkit-text-fill-color: ${COLORS.text} !important;
       caret-color: ${COLORS.text};
       transition: background-color 0s 600000s, color 0s 600000s !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
     }
   `
   document.head.appendChild(style)
