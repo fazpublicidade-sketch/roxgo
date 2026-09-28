@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <Screen contentStyle={styles.content} edges={['top', 'bottom']}>
       <View style={styles.top}>
-        <Logo width={200} />
+        <Logo width={240} />
         <Text style={styles.tagline}>Performance Intelligence</Text>
       </View>
 
