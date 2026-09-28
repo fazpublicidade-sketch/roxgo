@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <!-- viewport-fit=cover: no app instalado a tela ocupa a área do notch; as margens vêm do safe area -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+    <title>%WEB_TITLE%</title>
+    <meta name="description" content="ROXGO — encontre seus gargalos no HYROX, grave simulados e testes por estação." />
+
+    <!-- PWA: instalar como app na tela inicial -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#161618" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- iPhone: "Adicionar à Tela de Início" abre em tela cheia, sem a barra do navegador -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ROXGO" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+        background-color: #161618;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>
+      Ative o JavaScript para usar o ROXGO.
+    </noscript>
+    <div id="root"></div>
+  </body>
+</html>
