@@ -37,10 +37,12 @@ export default function Login() {
   async function signUp() {
     if (!validate()) return
     setLoading('signUp')
-    const { error } = await supabase.auth.signUp({ email: email.trim(), password })
+    const { data, error } = await supabase.auth.signUp({ email: email.trim(), password })
     setLoading(null)
     if (error) showAlert('Erro ao criar conta', error.message)
-    else showAlert('Conta criada!', 'Confirme seu email para continuar')
+    // Sem confirmação de email no Supabase a sessão já vem pronta e o App segue para o onboarding;
+    // o aviso só aparece se a confirmação estiver ligada
+    else if (!data.session) showAlert('Conta criada!', 'Confirme seu email para continuar')
   }
 
   return (
